@@ -5,6 +5,7 @@
  */
 package Modelos;
 
+import Modelos.Abstract.Pessoa;
 import Modelos.Enum.TipoFuncionarioEnum;
 import java.sql.Date;
 
@@ -12,7 +13,7 @@ import java.sql.Date;
  *
  * @author Damarate
  */
-public class Funcionario {
+public class Funcionario extends Pessoa {
     private Date dataEntrada;
     private double salário;
     private String documento1;

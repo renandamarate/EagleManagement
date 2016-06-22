@@ -8,8 +8,13 @@ package Modelos;
 
 
 import Modelos.Abstract.Pessoa;
+import Modelos.Enum.TipoEscolaridadeEnum;
+import Modelos.Enum.TipoEtniaEnum;
 import Modelos.Enum.TipoMotivadorEnum;
+import Modelos.Enum.TipoNacionalidadeEnum;
+import Modelos.Enum.TipoNaturalidadeEnum;
 import Modelos.Enum.TipoRegimeEnum;
+import Modelos.Enum.TipoReligiaoEnum;
 import java.sql.Date;
 import java.util.List;
 
