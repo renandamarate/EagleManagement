@@ -5,6 +5,7 @@
  */
 package Modelos;
 
+import Modelos.Enum.TipoFuncionarioEnum;
 import java.sql.Date;
 
 /**
@@ -14,6 +15,7 @@ import java.sql.Date;
 public class Funcionario {
     private Date dataEntrada;
     private double salário;
-    private String documento;
+    private String documento1;
+    private String documento2;
     private TipoFuncionarioEnum tipoFuncionarioEnum;
 }

@@ -5,6 +5,7 @@
  */
 package Modelos.Abstract;
 
+import Modelos.Endereco;
 import java.sql.Date;
 
 /**
@@ -18,6 +19,7 @@ public abstract class Pessoa {
     private String nome;
     private Date dataNascimento;
     private char sexo;
+    private Endereco endereco;
 
     public int getId() {
         return id;
@@ -66,4 +68,12 @@ public abstract class Pessoa {
     public void setSexo(char sexo) {
         this.sexo = sexo;
     }    
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 }
