@@ -20,6 +20,7 @@ public abstract class Pessoa {
     private Date dataNascimento;
     private char sexo;
     private Endereco endereco;
+    private boolean Status;
 
     public int getId() {
         return id;
@@ -29,6 +30,15 @@ public abstract class Pessoa {
         this.id = id;
     }
 
+    public boolean isStatus() {
+        return Status;
+    }
+
+    public void setStatus(boolean Status) {
+        this.Status = Status;
+    }
+    
+    
     public String getDocumentoRG() {
         return documentoRG;
     }
