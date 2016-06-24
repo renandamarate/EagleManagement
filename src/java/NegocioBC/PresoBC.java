@@ -2,9 +2,7 @@ package NegocioBC;
 
 import Modelos.Preso;
 import PersistenciaDAO.PresoDAO;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.util.List;
 import org.springframework.util.StringUtils;
 
 public class PresoBC {
@@ -70,5 +68,4 @@ public class PresoBC {
         if(preso.getDataNascimento().getYear() < 1000)
             throw new Exception("Data de nascimento do preso inválido");
     }
-
 }

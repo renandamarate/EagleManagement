@@ -6,7 +6,6 @@
 package PersistenciaDAO;
 
 import Modelos.Abstract.Pessoa;
-import Modelos.Preso;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,6 +29,15 @@ public class PessoaDAO {
 		.append("(nome, documentoRG, documentoCPF, dataNascimento, sexo, enderecoId)")
 		.append("values ")
 		.append("(?, ?, ?, ?, ?, ?)");
+    private static StringBuilder selectCPFPessoaSQL = new StringBuilder()
+		.append("select * from Pessoa ")
+		.append("where documentoCPF = ? ");
+    private static StringBuilder selectRGPessoaSQL = new StringBuilder()
+		.append("select * from Pessoa ")
+		.append("where documentoRG = ? ");
+    private static StringBuilder selectNomePessoaSQL = new StringBuilder()
+		.append("select * from Pessoa ")
+		.append("where nome = ? ");
 
     private PessoaDAO() {
     }
@@ -95,16 +103,65 @@ public class PessoaDAO {
     // METODOS DE BUSCA
     ///////////////////////////////////////////////////////////////////
 
-    public Preso pesquisarPresoCPF(String filtro){
-        return null;
+    public Pessoa pesquisarPessoaCPF(Pessoa pessoa){
+        Connection connection = null; //Conexao.getInstance().obterConexao();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = connection.prepareStatement(selectCPFPessoaSQL.toString(), Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, pessoa.getId());
+            obterObjeto(rs, pessoa);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            //Conexao.close(rs, ps, connection);
+        }
+        return pessoa;
     }
     
-    public Preso pesquisarPresoNome(String filtro){
-        return null;
+    public Pessoa pesquisarPessoaNome(Pessoa pessoa){
+        Connection connection = null; //Conexao.getInstance().obterConexao();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = connection.prepareStatement(selectNomePessoaSQL.toString(), Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, pessoa.getId());
+            obterObjeto(rs, pessoa);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            //Conexao.close(rs, ps, connection);
+        }
+        return pessoa;
     }
     
-    public Preso pesquisarPresoRG(String filtro){
-        return null;
+    public Pessoa pesquisarPessoaRG(Pessoa pessoa){
+        Connection connection = null; //Conexao.getInstance().obterConexao();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = connection.prepareStatement(selectRGPessoaSQL.toString(), Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, pessoa.getId());
+            obterObjeto(rs, pessoa);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            //Conexao.close(rs, ps, connection);
+        }
+        return pessoa;
+    }
+    
+    ///////////////////////////////////////////////////////////////////
+    // METODOS DE AUXILIO
+    ///////////////////////////////////////////////////////////////////
+    
+    public Pessoa obterObjeto(ResultSet rs, Pessoa pessoa) throws SQLException{
+        pessoa.setNome(rs.getString("nome"));
+        pessoa.setDocumentoRG(rs.getString("documentoRG"));
+        pessoa.setDocumentoCPF(rs.getString("documentoCPF"));
+        pessoa.setSexo(rs.getString("sexo").charAt(0));
+        //pessoa.setEndereco(rs.getString("enderecoId"));
+        return pessoa;
     }
 
     private Integer retrievePrimaryKeygenerated(ResultSet rs, PreparedStatement ps) throws SQLException {
